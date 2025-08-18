@@ -5,6 +5,10 @@ export interface IClassSchedule {
   date: Date;
   startTime: Date;
   endTime: Date;
-  trainer: Types.ObjectId;
+  trainer: Types.ObjectId | string;
   trainees: Types.ObjectId[];
+  description?:string;
+  isActive: boolean;
+  isDeleted: boolean;
+  
 }

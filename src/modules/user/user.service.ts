@@ -18,7 +18,7 @@ const isUserExists = await User.findById(userId);
 };
 const getAllUsersDB = async (query: Record<string,undefined>) => {
   
-  const searchableFields = ["name","email","phone"];
+  const searchableFields = ["name","email","role"];
   const mainQuery = new QueryBuilder(
     User.find({}),
     query
@@ -49,7 +49,7 @@ const updateUserRoleDB = async (userId:string,role:string) => {
   return result;
 };
 const updateStatusDB = async (userId:string,isBlocked:string) => {
-  console.log(userId,isBlocked)
+  
   const isEmailExists = await User.exists({ _id: userId });
   if (!isEmailExists) {
     throw new AppError(httpStatus.NOT_FOUND,"userError","User Not found.");

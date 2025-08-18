@@ -33,7 +33,7 @@ export const loginDB = async (payload: { email: string; password: string }) => {
   }
 
   const token = jwt.sign(
-    { sub: user._id, role: user.role, email: user.email },
+    { sub: user._id,name:user.name, role: user.role, email: user.email },
     config.jwt_secret!,
     { expiresIn: config.jwt_expries! as any  }
   );
