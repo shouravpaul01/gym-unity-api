@@ -1,11 +1,22 @@
-import express, { Application, Request, Response } from "express";
+import express from "express";
+import type { Application, Request, Response } from "express";
 import cors from "cors";
-import { globalErrorHandler } from "./modules/middlewares/globalErrorHandler";
+import { globalErrorHandler } from "./middlewares/globalErrorHandler";
+import { AuthRoute } from "./modules/auth/auth.route";
+
 
 const app: Application = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 app.use(express.json());
+
+// Routes
+app.use("/api/auth", AuthRoute);
 
 
 app.get("/", (req: Request, res: Response) => {

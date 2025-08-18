@@ -6,8 +6,7 @@ import handleCastError from "../errors/handleCastError";
 import AppError from "../errors/AppError";
 import { TErrorMessages } from "../interfaces/error";
 import handleDuplicateError from "../errors/handleDuplicateError";
-import multer from 'multer';
-import handleMulterErrors from "../errors/handleMulterErrors";
+
 
 export const globalErrorHandler:ErrorRequestHandler=async (error,req,res,next) => {
     let statusCode = 500;
@@ -40,10 +39,6 @@ export const globalErrorHandler:ErrorRequestHandler=async (error,req,res,next) =
         statusCode = simplifiedError?.statusCode;
         message = simplifiedError?.message;
         errorMessages = simplifiedError?.errorMessages;
-      }else if(error instanceof multer.MulterError){
-        const simplifiedError = handleMulterErrors(error);
-        statusCode = simplifiedError?.statusCode;
-        message = simplifiedError?.message;
       }else if (error instanceof AppError) {
         statusCode = error?.statusCode;
         message = error.message;
