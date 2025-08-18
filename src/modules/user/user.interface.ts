@@ -1,3 +1,5 @@
+import { USER_ROLE } from "./user.constant";
+
 export type UserRole = "admin" | "trainer" | "trainee";
 export interface IUser {
     name: string;
@@ -12,3 +14,4 @@ export interface IUser {
     isBlocked:boolean,
     isDeleted:boolean
   }
+  export type IUserRole = keyof typeof USER_ROLE;
